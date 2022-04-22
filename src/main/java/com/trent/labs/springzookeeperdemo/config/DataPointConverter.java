@@ -1,20 +1,31 @@
 package com.trent.labs.springzookeeperdemo.config;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trent.labs.springzookeeperdemo.DataPoint;
-import org.springframework.core.convert.converter.Converter;
+import lombok.SneakyThrows;
 
-public class DataPointConverter implements Converter<String, DataPoint> {
+import java.beans.PropertyEditorSupport;
+import java.util.Arrays;
+import java.util.List;
 
+public class DataPointConverter extends PropertyEditorSupport {
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @SneakyThrows
     @Override
-    public DataPoint convert(String input) {
-        try {
-            return new ObjectMapper().readValue(input, DataPoint.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getAsText() {
+        List<DataPoint> dataPoints = (List<DataPoint>) this.getValue();
+        return objectMapper.writeValueAsString(dataPoints);
+    }
+
+    @SneakyThrows
+    @Override
+    public void setAsText(String text) throws IllegalArgumentException {
+        System.out.println(text);
+        List<DataPoint> dataPoint = Arrays.asList(objectMapper.readValue(text, DataPoint[].class));
+        super.setValue(dataPoint);
     }
 
 }
