@@ -16,18 +16,17 @@ public class DataPointMetaDataConverter extends PropertyEditorSupport {
     @SneakyThrows
     @Override
     public String getAsText() {
-        List<DataPointMetaData> dataPoints = (List<DataPointMetaData>) this.getValue();
+        DataPointMetaData dataPoints = (DataPointMetaData) this.getValue();
         return mapper.writeValueAsString(dataPoints);
     }
 
     @SneakyThrows
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
-        System.out.println(text);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, DataPointMetaData.class);
-        List <DataPointMetaData> result = mapper.readValue(text, type);
-        super.setValue(result);
+        JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, DataPointMetaData.Item.class);
+        List<DataPointMetaData.Item> result = mapper.readValue(text, type);
+        super.setValue(DataPointMetaData.builder().items(result).build());
     }
 
 }
