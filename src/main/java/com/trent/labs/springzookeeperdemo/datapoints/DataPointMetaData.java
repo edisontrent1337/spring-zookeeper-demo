@@ -1,4 +1,4 @@
-package com.trent.labs.springzookeeperdemo;
+package com.trent.labs.springzookeeperdemo.datapoints;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

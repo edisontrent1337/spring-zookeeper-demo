@@ -1,9 +1,8 @@
-package com.trent.labs.springzookeeperdemo.config;
+package com.trent.labs.springzookeeperdemo.datapoints;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trent.labs.springzookeeperdemo.DataPointMetaData;
 import lombok.SneakyThrows;
 
 import java.beans.PropertyEditorSupport;

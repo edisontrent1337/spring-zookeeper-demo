@@ -1,11 +1,8 @@
-package com.trent.labs.springzookeeperdemo;
+package com.trent.labs.springzookeeperdemo.datapoints;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.trent.labs.springzookeeperdemo.datapoints.DataPointMetaData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.cloud.zookeeper.config.ZookeeperPropertySource;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
