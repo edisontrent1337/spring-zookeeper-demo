@@ -19,7 +19,9 @@ public class UseCaseController {
 
     @GetMapping("/usecases/{id}")
     public ResponseEntity<UseCase> getUseCase(@RequestHeader("X-Tenant-Id") String tenantId, @PathVariable("id") String id){
-        return ResponseEntity.ok(useCaseRepository.getUseCase(tenantId, id));
+        return useCaseRepository.getUseCase(tenantId, id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/usecases")

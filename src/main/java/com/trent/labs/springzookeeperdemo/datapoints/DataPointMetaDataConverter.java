@@ -1,11 +1,11 @@
 package com.trent.labs.springzookeeperdemo.datapoints;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 
 import java.beans.PropertyEditorSupport;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataPointMetaDataConverter extends PropertyEditorSupport {
@@ -23,8 +23,7 @@ public class DataPointMetaDataConverter extends PropertyEditorSupport {
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, DataPointMetaData.Item.class);
-        List<DataPointMetaData.Item> result = mapper.readValue(text, type);
+        List<DataPointMetaData.Item> result = Arrays.asList(mapper.readValue(text, DataPointMetaData.Item[].class));
         super.setValue(DataPointMetaData.builder().items(result).build());
     }
 
