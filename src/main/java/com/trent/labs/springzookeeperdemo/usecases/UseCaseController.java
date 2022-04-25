@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+// This only exists for demonstration purposes
 @RestController
 public class UseCaseController {
 

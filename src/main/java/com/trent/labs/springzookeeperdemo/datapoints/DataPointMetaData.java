@@ -16,8 +16,10 @@ public class DataPointMetaData {
     @ToString
     public static class Item {
         @JsonProperty
-        private String name;
+        private String unitCode;
         @JsonProperty
         private String id;
+        @JsonProperty
+        private String hexCode;
     }
 }
